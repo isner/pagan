@@ -13,8 +13,10 @@ var query = require('querystring');
 exports = module.exports = pagan;
 
 
-function pagan(elem, total, adj) {
+function pagan(elem, total, adj, path) {
   total = total || 1;
+  adj = adj || 2;
+  path = path || location.pathname;
 
   var curr = query.parse(location.search).p;
   curr = curr ? parseInt(curr) : 1;
@@ -22,11 +24,10 @@ function pagan(elem, total, adj) {
   classes(elem).add('pagan');
 
   if (curr > 1) {
-    elem.appendChild(pageLink(curr - 1, 'Prev'));
+    elem.appendChild(pageLink(curr - 1, path, 'Prev'));
   }
 
   var i = 1;
-  var prev;
   while (i <= total) {
     if (i == curr) {
       elem.appendChild(makeSpan('curr', i));
@@ -36,7 +37,7 @@ function pagan(elem, total, adj) {
       (i === 1) ||
       (i === total)
     ) {
-      elem.appendChild(pageLink(i));
+      elem.appendChild(pageLink(i, path));
     } else {
       if (i < curr && !document.querySelector('.pagan .ell-left')) {
         elem.appendChild(makeSpan('ell-left', '...'));
@@ -49,7 +50,7 @@ function pagan(elem, total, adj) {
   }
 
   if (curr < total) {
-    elem.appendChild(pageLink(curr + 1, 'Next'));
+    elem.appendChild(pageLink(curr + 1, path, 'Next'));
   }
 }
 
@@ -58,13 +59,14 @@ function pagan(elem, total, adj) {
  *
  * @param {Number} toPage
  * @param {String} text
+ * @param {String} path
  * @return {Element}
  * @api private
  */
 
-function pageLink(toPage, text) {
+function pageLink(toPage, path, text) {
+  path = path || location.pathname;
   text = text || toPage.toString();
-  var path = location.pathname;
   var link = document.createElement('a');
   link.href = path + '?p=' + toPage;
   link.innerHTML = text;
