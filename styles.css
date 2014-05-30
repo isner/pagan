@@ -1,0 +1,28 @@
+
+.pagan {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.pagan a,
+.pagan span {
+  position: relative;
+  margin: .2em;
+  padding: .3em .5em;
+  color: #141F35;
+  border: 1px solid #ccc;
+}
+
+.pagan a:hover,
+.pagan span.curr {
+  background-color: #ccc;
+}
+
+.pagan .clip {
+  position: absolute;
+  clip: rect(1px 1px 1px 1px);
+  font-size: 1px;
+  left: 0;
+  height: 1px;
+  width: 1px;
+}

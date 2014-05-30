@@ -1,0 +1,17 @@
+{
+  "name": "pagan",
+  "repository": "isner/pagan",
+  "description": "Pagination from the classical period",
+  "version": "0.1.0",
+  "dependencies": {
+    "component/classes": "*",
+    "component/querystring": "*"
+  },
+  "development": {
+    "dependencies": {}
+  },
+  "main": "index.js",
+  "scripts": ["index.js"],
+  "styles": ["styles.css"],
+  "license": "MIT"
+}
