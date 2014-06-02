@@ -14,9 +14,13 @@
 
   <script src="../build/build.js"></script>
   <script>
-    var pagan = require('pagan');
+    var Pagan = require('pagan');
     var wrapper = document.getElementById('pagination');
-    pagan(pagination, 10, 2);
+    // pagan(pagination, 10, 2);
+    new Pagan(wrapper, {
+      total: 10,
+      adjacent: 2
+    });
   </script>
 </body>
 </html>
