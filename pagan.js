@@ -225,7 +225,7 @@ Pagan.prototype.inactive = function (text, classname) {
  * of the current page button.
  *
  * @param {String} side - 'left' or 'right'
- * @return {Boolean} - pagination needs left ellipsis
+ * @return {Boolean} - ellipsis needed or not
  * @api private
  */
 

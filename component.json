@@ -10,8 +10,8 @@
   "development": {
     "dependencies": {}
   },
-  "main": "index.js",
-  "scripts": ["index.js"],
+  "main": "pagan.js",
+  "scripts": ["pagan.js"],
   "styles": ["styles.css"],
   "license": "MIT"
 }
