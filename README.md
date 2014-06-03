@@ -1,36 +1,55 @@
-## pagan
+# pagan
 Pagination from the classical period
 
-### Installation
+## Installation
+
 Install with Component
 ```
-component install isner/pagan
+$ component install isner/pagan
 ```
 
-### Basic Usage
-To insert pagan pagination into an empty div:
+## Basic Usage
+
+Pagan requires an empty element into which to be inserted.
+Get a handle on your insertion point, instantiate a Pagan,
+and give it some options.
 ```
-var pagan = require('pagan');
-
-var pagination = document.querySelector('.myPaginationWrapper');
-var totalPages = 10; // total number of pages
-
-pagan(pagination, totalPages);
+var Pagan = require('pagan');
+var container = document.querySelector('.myElement');
+var pagan = new Pagan(container, { total: 10 });
 ```
 
-### API
+## API
 
-#### pagan(elem, total, [adj], [path])
+### new Pagan(element, [options])
 
-##### elem
-Element into which the pagination will be inserted.
+Instantiates a Pagan.
 
-##### total
-Total number of pages represented by the pagination bar.
+#### element {Element}
 
-##### adj (optional)
-Number of pages on either side of the current page to display.
-Default: `2`
+The container into which the pagination will be inserted.
+Ideally, this should be an empty `<div/>`.
 
-##### path (optional)
-`href` value to be added to each page link.
+#### options {Object}
+
+##### options.total
+
+The total number of pages represented by this pagination.
+
+Default value: `1`
+
+##### options.adjacent
+
+The number of pages to display on either side of the
+current page.
+
+Default value: `2`
+
+##### options.path
+
+The desired `href` value of each page link, without
+querystring. Ex: `{ path: '/content/articles' }`
+will create `href`s of  `/content/articles?p={n}`, and
+so on.
+
+Default value: `window.location.pathname`
