@@ -21,7 +21,7 @@ var pagan = new Pagan(container, { total: 10 });
 
 ## API
 
-### new Pagan(element, options)
+### new Pagan(element, [options])
 
 Instantiates a Pagan.
 
