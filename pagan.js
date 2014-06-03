@@ -17,6 +17,7 @@ exports = module.exports = Pagan;
  */
 
 var defaults = {
+  total: 1,
   adjacent: 2
 };
 
@@ -40,7 +41,7 @@ function Pagan(el, options) {
   this.applyOptions();
   this.setContainer(el);
   this.setPath();
-  this.setCurrentPage();
+  this.currentPage();
   this.addButtons();
 
   return this;
@@ -55,7 +56,7 @@ function Pagan(el, options) {
 
 Pagan.prototype.applyOptions = function () {
   var that = this;
-  ['total', 'adjacent']
+  ['total', 'adjacent', 'path']
   .forEach(function (opt) {
     that[opt] = that.options.hasOwnProperty(opt)
       ? that.options[opt]
@@ -103,8 +104,10 @@ Pagan.prototype.setContainer = function (el) {
 };
 
 /**
- * Sets `#currentPage` based on the `p` query
- * parameter. Defaults to 1 if none is provided.
+ * Sets `#current` based on either the provided
+ * value or the query parameter `p`.
+ *
+ * Defaults to 1.
  *
  * @return {Pagan}
  * @api private
@@ -112,7 +115,7 @@ Pagan.prototype.setContainer = function (el) {
 
 // TODO: Make the query parameter name configurable
 
-Pagan.prototype.setCurrentPage = function () {
+Pagan.prototype.currentPage = function () {
   var curr = query.parse(location.search).p;
   this.current = curr ? parseInt(curr) : 1;
   return this;
