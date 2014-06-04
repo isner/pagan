@@ -13,6 +13,10 @@
   background-color: #ccc;
 }
 
+.pagan span {
+  cursor: default;
+}
+
 .pagan .clip {
   position: absolute;
   clip: rect(1px 1px 1px 1px);

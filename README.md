@@ -10,46 +10,91 @@ $ component install isner/pagan
 
 ## Basic Usage
 
-Pagan requires an empty element into which to be inserted.
-Get a handle on your insertion point, instantiate a Pagan,
-and give it some options.
+Pagan requires an empty element into which to be
+inserted - this should be a block-level element,
+like a `<div/>`. Get a handle on your insertion
+point, instantiate a Pagan, and give it some
+options.
 ```
 var Pagan = require('pagan');
 var container = document.querySelector('.myElement');
-var pagan = new Pagan(container, { total: 10 });
+
+var pagan = new Pagan(container);
+pagan.total(12); // total number of pages (IMPORTANT)
+pagan.render();
 ```
 
 ## API
 
-### new Pagan(element, [options])
+### new Pagan(Element|Selector, [options])
 
-Instantiates a Pagan.
+Creates an instance of `Pagan#` within
+a supplied `element` container (ideally
+an empty div).
 
-#### element {Element}
+Options for each instance of Pagan can be set
+using the methods outlined below, or via the
+`options` object argument.
 
-The container into which the pagination will be inserted.
-Ideally, this should be an empty `<div/>`.
+### Pagan#total(Number)
 
-#### options {Object}
+Sets `Pagan#options.total`.
 
-##### options.total
+The total number of pages that should be handled
+by this instance of pagination.
 
-The total number of pages represented by this pagination.
+Defaults to `1`.
 
-Default value: `1`
+### Pagan#param(String)
 
-##### options.adjacent
+Sets `Pagan#options.param`.
 
-The number of pages to display on either side of the
-current page.
+The name of the query string parameter that
+Pagan should look for in order to determine
+the currently displayed page at any given
+time.
 
-Default value: `2`
+Defaults to `'p'`.
 
-##### options.path
+### Pagan#adjacent(Number)
 
-The desired `href` value of each page link, without
-querystring. Ex: `{ path: '/content/articles' }`
-will create `href`s of  `/content/articles?p={n}`, and
-so on.
+Sets `Pagan#options.adjacent`.
 
-Default value: `window.location.pathname`
+The `number` of immediately adjacent page buttons
+to display on either side of the current page.
+This does not include the first and last pages,
+which will *always* be visible.
+
+Defaults to `2`.
+
+### Pagan#path(String)
+
+Sets `Pagan#options.path`.
+
+The `href` of each link in the pagination, minus
+the query parameter which is added by Pagan.
+Useful for ensuring that your server-side routing
+has the opportunity to redirect non-intuitive,
+developer-stipulated paths.
+
+Defaults to the value of `window.location.pathname`.
+
+### Pagan#showErrors(Boolean)
+
+Sets `Pagan#options.showErrors`.
+
+Whether or not error messages should be logged
+by Pagan in the event of invalid input.
+
+Default to `false`.
+
+### Pagan#get(option)
+
+Getter method for any current `option` of `Pagan#`.
+```
+pagan.get(path);
+// => 'loremipsum.org/page'
+
+pagan.get(showErrors);
+// => false
+```

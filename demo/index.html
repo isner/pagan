@@ -1,30 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>pagan test</title>
+  <title>pagan demo</title>
+  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="../build/build.css">
-  <style>
-    html {
-      font-family: Helvetica, sans-serif;
-    }
-    .pagan {
-      margin: 20px 0;
-      text-align: center;
-    }
-  </style>
 </head>
 <body>
-  <h1>pagan test</h1>
+  <h1>pagan demo</h1>
 
-  <div id="pagination"></div>
+  <div id="wrap-one"></div>
+  <div id="wrap-two"></div>
+  <div id="wrap-three"></div>
 
   <script src="../build/build.js"></script>
-  <script>
-    var Pagan = require('pagan');
-    var wrapper = document.getElementById('pagination');
-    new Pagan(wrapper, {
-      total: 15
-    });
-  </script>
+  <script src="scripts.js"></script>
 </body>
 </html>

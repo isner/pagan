@@ -2,10 +2,11 @@
   "name": "pagan",
   "repository": "isner/pagan",
   "description": "Pagination from the classical period",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "dependencies": {
     "component/classes": "*",
-    "component/querystring": "*"
+    "component/querystring": "*",
+    "stephenmathieson/rndid": "0.1.1"
   },
   "development": {
     "dependencies": {}
