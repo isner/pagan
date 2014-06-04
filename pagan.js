@@ -226,7 +226,9 @@ Pagan.prototype.setCurrent = function () {
 
 /**
  * Renders the pagination content. Adds all
- * necessary buttons (active and incative).
+ * necessary buttons (active and inactive),
+ * determines which is the current page, and
+ * where all ellipses should be located.
  *
  * @return {Pagan}
  * @api public

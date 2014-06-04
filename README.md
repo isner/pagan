@@ -91,6 +91,13 @@ by Pagan in the event of invalid input.
 
 Default to `false`.
 
+### Pagan#render()
+
+Renders the pagination content. Adds all
+necessary buttons (active and inactive),
+determines which is the current page, and
+where all ellipses should be located.
+
 ### Pagan#get(String)
 
 Getter method for any current option of `Pagan#`.
