@@ -2,6 +2,8 @@
 Pagination from the classical period. Pagan inserts a series
 of pagination links into a specific element on your page.
 
+![Pagan sample](https://dl.dropboxusercontent.com/u/59664306/pagan-sample.PNG)
+
 ## Installation
 
 Install with Component
