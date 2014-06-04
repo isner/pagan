@@ -89,12 +89,12 @@ by Pagan in the event of invalid input.
 
 Default to `false`.
 
-### Pagan#get(option)
+### Pagan#get(String)
 
-Getter method for any current `option` of `Pagan#`.
+Getter method for any current option of `Pagan#`.
 ```
 pagan.get(path);
-// => 'loremipsum.org/page'
+// => 'mysite.com/about'
 
 pagan.get(showErrors);
 // => false
