@@ -1,5 +1,6 @@
 # pagan
-Pagination from the classical period
+Pagination from the classical period. Pagan inserts a series
+of pagination links into a specific element on your page.
 
 ## Installation
 
