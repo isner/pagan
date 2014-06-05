@@ -82,15 +82,6 @@ developer-stipulated paths.
 
 Defaults to the value of `window.location.pathname`.
 
-### Pagan#showErrors(Boolean)
-
-Sets `Pagan#options.showErrors`.
-
-Whether or not error messages should be logged
-by Pagan in the event of invalid input.
-
-Default to `false`.
-
 ### Pagan#render()
 
 Renders the pagination content. Adds all
@@ -105,6 +96,6 @@ Getter method for any current option of `Pagan#`.
 pagan.get(path);
 // => 'mysite.com/about'
 
-pagan.get(showErrors);
-// => false
+pagan.get(adjacent);
+// => 2
 ```

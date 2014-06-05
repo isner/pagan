@@ -9,8 +9,7 @@ var wrapThree = document.getElementById('wrap-three');
 var paganOne = new Pagan(wrapOne, {
   total: 5,
   adjacent: 1,
-  param: 'pg',
-  showErrors: true
+  param: 'pg'
 });
 
 // relying on default options
@@ -22,7 +21,6 @@ var paganThree = new Pagan(wrapThree);
 paganThree.total(15);
 paganThree.adjacent(3);
 paganThree.param('page');
-paganThree.showErrors(true);
 
 // render them all
 paganOne.render();

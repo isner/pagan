@@ -21,7 +21,6 @@ var defaults = {
   total: 1,
   param: 'p',
   adjacent: 2,
-  showErrors: false,
   path: location.pathname,
 };
 
@@ -41,13 +40,10 @@ function Pagan(el, options) {
   if (!(this instanceof Pagan)) {
     return new Pagan(el);
   }
-  this.errors = [];
-  if (!el) this.errors.push('undefined element argument');
+  if (!el) throw new Error('undefined element argument (Pagan)');
   this.options = options || {};
   this.applyOptions();
   this.setContainer(el);
-
-  return this;
 }
 
 /**
@@ -60,7 +56,7 @@ function Pagan(el, options) {
 
 Pagan.prototype.applyOptions = function () {
   var that = this;
-  ['total', 'adjacent', 'path', 'param', 'showErrors']
+  ['total', 'adjacent', 'path', 'param']
   .forEach(function (opt) {
     that.options[opt] = that.options.hasOwnProperty(opt)
       ? that.options[opt]
@@ -147,24 +143,6 @@ Pagan.prototype.adjacent = function (adjacent) {
 };
 
 /**
- * Sets `#options.showErrors`.
- *
- * Whether or not error messages should be logged
- * by Pagan in the event of invalid input.
- *
- * Default to `false`.
- *
- * @param {Boolean} status
- * @return {Pagan}
- * @api public
- */
-
-Pagan.prototype.showErrors = function (status) {
-  this.options.showErrors = status;
-  return this;
-};
-
-/**
  * Sets `#options.path`.
  *
  * The `href` of each link in the pagination, minus
@@ -198,11 +176,10 @@ Pagan.prototype.setContainer = function (el) {
     el = document.querySelector(el);
   }
   if (!el || !el.nodeType || el.nodeType !== 1) {
-    this.container = null;
-    this.errors.push('invalid element argument');
+    throw new Error('invalid element argument (Pagan)');
   }
   else {
-    el.id = rndid();
+    el.id = el.id || rndid();
     classes(el).add('pagan');
     this.container = el;
   }
@@ -242,10 +219,6 @@ Pagan.prototype.render = function () {
   var adj = this.options.adjacent;
   var cont = this.container;
 
-  if (this.errors.length) {
-    return this.invalid();
-  }
-
   if (curr > 1) {
     cont.appendChild(
       this.button(curr - 1, 'Prev')
@@ -253,12 +226,13 @@ Pagan.prototype.render = function () {
   }
 
   for (var i = 1; i <= total; i++) {
-    if (i == curr) {
+    if (i == curr) { // current page
       cont.appendChild(
         this.inactive(i, 'curr')
       );
+      continue;
     }
-    else if (
+    if ( // within `adj` of the current page
       (i >= (curr - adj) && i < curr) ||
       (i <= (curr + adj) && i > curr) ||
       (i === 1) ||
@@ -267,18 +241,17 @@ Pagan.prototype.render = function () {
       cont.appendChild(
         this.button(i)
       );
+      continue;
     }
-    else {
-      if (i < curr && this.noEllipsis('left')) {
-        cont.appendChild(
-          this.inactive('...', 'left-ell')
-        );
-      }
-      if (i > curr && this.noEllipsis('right')) {
-        cont.appendChild(
-          this.inactive('...', 'right-ell')
-        );
-      }
+    if (i < curr && this.noEllipsis('left')) {
+      cont.appendChild(
+        this.inactive('...', 'left-ell')
+      );
+    }
+    if (i > curr && this.noEllipsis('right')) {
+      cont.appendChild(
+        this.inactive('...', 'right-ell')
+      );
     }
   }
 
@@ -306,7 +279,7 @@ Pagan.prototype.button = function (page, text) {
 
   var a = document.createElement('a');
   a.href = path + '?' + this.options.param + '=' + page;
-  a.innerHTML = text;
+  a.innerText = text;
 
   // prepend each button's text content with
   // 'page' for screen readers, et al.
@@ -350,18 +323,4 @@ Pagan.prototype.noEllipsis = function (side) {
   return !document.querySelector(
     '#' + this.container.id + ' .' + side + '-ell'
    );
-};
-
-/**
- * Logs errors to the console, if
- * `#options.showErrors` is set to `true`.
- *
- * @api private
- */
-
-Pagan.prototype.invalid = function () {
-  if (!this.options.showErrors) return this;
-  this.errors.forEach(function (error) {
-    console.error('Pagan error: ', error);
-  });
 };
