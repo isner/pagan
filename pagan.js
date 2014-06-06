@@ -98,7 +98,7 @@ Pagan.prototype.get = function (prop) {
  */
 
 Pagan.prototype.total = function (total) {
-  this.options.total = total;
+  this.options.total = parseInt(total, 10);
   return this;
 };
 

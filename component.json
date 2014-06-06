@@ -2,7 +2,7 @@
   "name": "pagan",
   "repository": "isner/pagan",
   "description": "Pagination from the classical period",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "dependencies": {
     "component/classes": "*",
     "component/querystring": "*",
